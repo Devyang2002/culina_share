@@ -3,4 +3,4 @@
 "builds":{
     "src": "index.js", "use":"@vercel/node"
 },
- "routes": [{ "source": "/(.*)", "destination": "/app.js" }] }
+ "routes": [{ "source": "/(.*)", "destination": "/index.js" }] }
