@@ -28,6 +28,12 @@ app.use('/api/v1/recipes', recipeRouter);
 dbConnection();
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT, () =>{
-    console.log(`Server Running On Port ${process.env.PORT}`);
+const PORT = process.env.PORT || 4000
+
+// if(process.env.NODE.ENV == "production"){
+//     app.use(express.static("./culinashare/build"));
+// }
+
+app.listen(PORT, () =>{
+    console.log(`Server Running On Port ${PORT}`);
 });
