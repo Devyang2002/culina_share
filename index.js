@@ -27,4 +27,7 @@ app.use('/api/v1/recipes', recipeRouter);
 
 dbConnection();
 app.use(errorMiddleware);
-export default app;
+
+app.listen(process.env.PORT, () =>{
+    console.log(`Server Running On Port ${process.env.PORT}`);
+});
