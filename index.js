@@ -28,7 +28,7 @@ app.use('/api/v1/recipes', recipeRouter);
 dbConnection();
 app.use(errorMiddleware);
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT;
 
 // if(process.env.NODE.ENV == "production"){
 //     app.use(express.static("./culinashare/build"));
