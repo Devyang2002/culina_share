@@ -10,12 +10,12 @@ const app = express();
 dotenv.config({path : '.env'});
 
 // we use cors to connect the frontend and backend
-/*app.use(cors({
+app.use(cors({
     origin: ["http://localhost:3000"],
     methods:["POST"],
     credentials:true,
     exposedHeaders: ["set-cookie"]
-}));*/
+}));
 
     
 app.use(express.json());
