@@ -9,14 +9,29 @@ import recipeRouter from './routes/recipeRoute.js'
 const app = express();
 dotenv.config({path : '.env'});
 
-// we use cors to connect the frontend and backend
-app.use(cors({
-    origin: ["http://localhost:3000"],
-    methods:["POST"],
-    credentials:true,
-    exposedHeaders: ["set-cookie"]
-}));
+const allowedOrigins = ['https://devyang2002.github.io', 'http://localhost:3000'];
 
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  // Check if the origin is in the allowedOrigins array or if it's undefined (for non-browser clients)
+  if (allowedOrigins.includes(origin) || !origin) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true'); // Enable credentials
+
+    if (req.method === 'OPTIONS') {
+      // Pre-flight request. Respond successfully:
+      res.status(200).end();
+    } else {
+      // Regular request. Continue to the next middleware:
+      next();
+    }
+  } else {
+    res.status(403).json({ message: 'Forbidden' });
+  }
+});
     
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
